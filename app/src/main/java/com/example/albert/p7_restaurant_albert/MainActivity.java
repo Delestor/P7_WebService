@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
     /***Mostrar datos del item seleccionado ***/
     public void cargarDatosModif(int id) {
 
-        String newURL = Constantes.GET_BY_ID + "?idCita=" + id;
+        String newURL = Constantes.ACCEDER_CUINER_PLATS + "?idCita=" + id;
         GestionPeticionesHTTP colaPeticiones = null;
 
         colaPeticiones.getInstance(this).addToRequestQueue(

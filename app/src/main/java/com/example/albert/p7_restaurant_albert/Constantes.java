@@ -18,13 +18,8 @@ public class Constantes {
     /*** URLs del Web Service ***/
     public static final String POST_LOG_IN = IP + PUERTO_HOST +rutaPadre+ "/index.php";
 
-    public static final String GET_BY_ID = IP + PUERTO_HOST +rutaPadre+ "/obtenerDetalleCita.php";
-
-    public static final String UPDATE = IP + PUERTO_HOST +rutaPadre+ "/modificarCita.php";
-
-    public static final String DELETE = IP + PUERTO_HOST +rutaPadre+ "/eliminarCita.php";
-
-    public static final String INSERT = IP + PUERTO_HOST +rutaPadre+ "/insertarCita.php";
+    public static final String ACCEDER_CUINER_PLATS = IP + PUERTO_HOST +rutaPadre+ "/cuiner/llistatPlats.php";
+    public static final String ACCEDER_MAITRE_PLATS = IP + PUERTO_HOST +rutaPadre+ "/maitre/llistatPlats.php";
 
     /*** Clave para el valor extra que representa al identificador de una cita ***/
     public static final String EXTRA_ID = "IDEXTRA";

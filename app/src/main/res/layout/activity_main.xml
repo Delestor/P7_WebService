@@ -41,5 +41,9 @@
         android:layout_below="@+id/etPassword"
         android:onClick="logInAction"/>
 
-
+    <TextView
+        android:layout_below="@id/btnLogIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Usuarios validos: ferran(maitre), albert(cocinero)\nsu password es bemen3"/>
 </RelativeLayout>

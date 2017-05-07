@@ -10,8 +10,10 @@ public class Plato {
     private String nom;
     private String kcal;
     private String tipus;
+    private boolean seleccionado;
 
     public Plato() {
+        seleccionado = false;
     }
 
     public Plato(String id, String nom, String kcal, String tipus) {
@@ -19,6 +21,7 @@ public class Plato {
         this.nom = nom;
         this.kcal = kcal;
         this.tipus = tipus;
+        this.seleccionado = false;
     }
 
     public String getId() {
@@ -51,5 +54,13 @@ public class Plato {
 
     public void setTipus(String tipus) {
         this.tipus = tipus;
+    }
+
+    public boolean isSeleccionado() {
+        return seleccionado;
+    }
+
+    public void setSeleccionado(boolean seleccionado) {
+        this.seleccionado = seleccionado;
     }
 }

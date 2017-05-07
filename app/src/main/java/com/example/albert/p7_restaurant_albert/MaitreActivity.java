@@ -1,8 +1,10 @@
 package com.example.albert.p7_restaurant_albert;
 
+import android.app.ListActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -16,9 +18,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MaitreActivity extends AppCompatActivity {
+public class MaitreActivity extends ListActivity {
 
     ArrayList<Plato> platos;
+    ArrayAdapter<Plato> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,7 @@ public class MaitreActivity extends AppCompatActivity {
 
         platos = new ArrayList<>();
         cargarListaPlatos();
+
     }
 
     public void cargarListaPlatos() {
@@ -55,7 +59,10 @@ public class MaitreActivity extends AppCompatActivity {
 
                 )
 
-        );}
+        );
+
+
+    }
 
     private void procesarRespuesta(JSONObject response) {
 /*
@@ -96,8 +103,43 @@ public class MaitreActivity extends AppCompatActivity {
         }
 */
         try {
-            String nom = response.getString("nom");
-            System.out.println("Como de grande es: "+response.length());
+            String stringArray = "resultado";
+            String primers = "Primers";
+            String segons = "Segons";
+            String postres = "Postres";
+
+            String actual = primers;
+            boolean final_lectura = false;
+            int count = 0;
+
+            do{
+                String aux = stringArray+actual+count;
+                if(response.has(aux)){
+                    //JSONArray arrayActual = response.getJSONArray(aux);
+                    JSONObject c = response.getJSONObject(aux);
+                    System.out.println("Auxiliar: "+aux);
+                    System.out.println(c.getString("nom"));
+                    Plato plato = new Plato();
+                    plato.setNom(c.getString("nom"));
+                    plato.setKcal(c.getString("kcal"));
+                    platos.add(plato);
+                    count++;
+                }else{
+                    System.out.println("No existe "+aux);
+                    count = 0;
+                    if(actual.equals(primers)){
+                        actual = segons;
+                    }else if(actual.equals(segons)){
+                        actual = postres;
+                    }else if (actual.equals(postres)){
+                        //final lectura de Json
+                        final_lectura = true;
+                    }
+                }
+            }while(!final_lectura);
+
+            adapter = new AdaptadorPlatosMetre(this, platos);
+            setListAdapter(adapter);
         } catch (JSONException e) {
 
             System.out.println("Aqui hay un error, "+e);
